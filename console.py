@@ -5,6 +5,9 @@ Command interpreter for the HBNB project
 import cmd
 import json
 import models
+import re
+from models.base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -49,14 +52,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Show string representation of instance.
+        Show the string representation of an instance.
         """
         if not arg:
             print("** class name missing **")
             return ()
 
         args = arg.split()
-        if args[0] not in models.classes:
+        class_name = args[0]
+        objects = storage.all()
+
+        if class_name not in objects:
             print("** class doesn't exist **")
             return ()
 
@@ -64,8 +70,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return ()
 
-        objects = models.storage.all()
-        inst_key = args[0] + '.' + args[1]
+        inst_key = class_name + '.' + args[1]
         inst = objects.get(inst_key, None)
         if inst:
             print(inst)
@@ -102,18 +107,19 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints all instances based or not on the class name.
         """
-        objects = models.storage.all()
+        objects = storage.all()
 
         if not arg:
             print([str(obj) for obj in objects.values()])
         else:
             args = arg.split()
-            if args[0] not in models.classes:
+            class_name = args[0]
+            if class_name not in objects:
                 print("** class doesn't exist **")
                 return ()
 
             print([str(obj) for obj in objects.values()
-                   if type(obj).__name__ == args[0]])
+                  if type(obj).__name__ == class_name])
 
     def do_update(self, arg):
         """
