@@ -4,11 +4,21 @@ file storage for creating writing and reading json for storage
 """
 import json
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage:
     """
-    for file storage
+    class for storage
+
+    attributes:
+        _file_path (str):
+        __objects (dict):
     """
 
     __file_path = 'file.json'
@@ -18,14 +28,6 @@ class FileStorage:
         """
         returns the dictionary __objects
         """
-        if cls is not None:
-            if type(cls) == str:
-                cls = eval(cls)
-            cls_dict = {}
-            for k, v in FileStorage.__objects.items():
-                if type(v) == cls:
-                    cls_dict[k] = v
-            return cls_dict
         return FileStorage.__objects
 
     def new(self, obj):
