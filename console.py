@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
             return ()
 
         try:
-            new_inst = models.classes[arg]()
+            new_inst = eval(arg)()
             new_inst.save()
             print(new_inst.id)
         except KeyError:
