@@ -4,6 +4,7 @@ Command interpreter for the HBNB project
 """
 import cmd
 import re
+from shlex import split
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
