@@ -117,12 +117,11 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = arg.split()
             class_name = args[0]
-            if class_name not in objects:
+            if class_name not in models.classes:
                 print("** class doesn't exist **")
                 return ()
 
-            print([str(obj) for obj in objects.values()
-                  if type(obj).__name__ == class_name])
+            print([str(obj) for obj in models.classes[class_name].values()])
 
     def do_update(self, arg):
         """
