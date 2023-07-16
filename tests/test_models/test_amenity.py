@@ -38,12 +38,6 @@ class TestAmenity_instantiation(unittest.TestCase):
     def test_password_is_public_str(self):
         self.assertEqual(str, type(User.password))
 
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(User.first_name))
-
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(User.last_name))
-
     def twoAmenitysIdUnique(self):
         amenity1 = Amenity()
         amenity2 = Amenity()
