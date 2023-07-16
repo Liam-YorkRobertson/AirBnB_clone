@@ -3,13 +3,9 @@
 Command interpreter for the HBNB project
 """
 import cmd
-import json
-import models
 import re
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 from models import storage
-from models import *
 from models.user import User
 from models.state import State
 from models.city import City
