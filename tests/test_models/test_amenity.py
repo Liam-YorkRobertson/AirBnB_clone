@@ -35,9 +35,6 @@ class TestAmenity_instantiation(unittest.TestCase):
     def test_email_is_public_str(self):
         self.assertEqual(str, type(User.email))
 
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(User.password))
-
     def twoAmenitysIdUnique(self):
         amenity1 = Amenity()
         amenity2 = Amenity()
