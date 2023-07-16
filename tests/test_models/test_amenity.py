@@ -11,9 +11,6 @@ from models.amenity import Amenity
 class TestAmenity_instantiation(unittest.TestCase):
     """unittests testing Amenity class."""
 
-    def noArgsInstallTest(self):
-        self.assertEqual(Amenity, type(Amenity()))
-
     def newInstanceStoreTest(self):
         self.assertIn(Amenity(), models.storage.all().values())
 
@@ -26,14 +23,17 @@ class TestAmenity_instantiation(unittest.TestCase):
     def updatedDatetimeTest(self):
         self.assertEqual(datetime, type(Amenity().updated_at))
 
+    def noArgsInstallTest(self):
+        self.assertEqual(Amenity, type(Amenity()))
+
     def nameClassAttTest(self):
         amenity = Amenity()
         self.assertEqual(str, type(Amenity.name))
         self.assertIn("name", dir(Amenity()))
         self.assertNotIn("name", am.__dict__)
 
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(User.email))
+    def test_to_dict_type(self):
+        self.assertTrue(dict, type(Amenity().to_dict()))
 
     def twoAmenitysIdUnique(self):
         amenity1 = Amenity()
