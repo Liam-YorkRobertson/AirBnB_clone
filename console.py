@@ -126,7 +126,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return ()
 
-            print([str(obj) for obj in models.classes[class_name].values()])
+            print([str(obj) for obj in objects.values()
+                  if type(obj).__name__ == class_name])
 
     def do_update(self, arg):
         """
