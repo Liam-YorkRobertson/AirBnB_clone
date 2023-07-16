@@ -19,14 +19,6 @@ class FileStorage:
         returns the dictionary __objects
         """
         FileObj = FileStorage.__objects
-        if cls is not None:
-            if type(cls) == str:
-                cls = eval(cls)
-            cls_dict = {}
-            for key, value in FileObj.items():
-                if type(value) == cls:
-                    cls_dict[key] = value
-            return cls_dict
         return Fileobj
 
     def new(self, obj):
