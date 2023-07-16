@@ -14,12 +14,11 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self, cls=None):
+    def all(self):
         """
         returns the dictionary __objects
         """
-        FileObj = FileStorage.__objects
-        return Fileobj
+        return FileStorage.__objects
 
     def new(self, obj):
         """
@@ -54,16 +53,3 @@ class FileStorage:
             clsName = value["__class__"]
             del value["__class__"]
             self.new(eval(clsName)(**value))
-
-    def delete(self, obj=None):
-        """Deletes an object if it exists."""
-        FileId = "{}.{}".format(type(obj).__name__, obj.id)
-        FileObj = FileStorge._objects
-        try:
-            del FileObj[FileId]
-        except (AttributeError, KeyError):
-            pass
-
-    def close(self):
-        """Call the reload function"""
-        FileStorage.reload()
