@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-file storage for creating writing and reading json for storage
-"""
+"""file storage for creating writing and reading json for storage"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -13,8 +11,7 @@ from models.review import Review
 
 
 class FileStorage:
-    """
-    class for storage
+    """class for storage
 
     attributes:
         _file_path (str):
@@ -25,24 +22,18 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """
-        returns the dictionary __objects
-        """
-        return FileStorage.__objects
+        """returns the dictionary __objects"""
+        return self.__objects
 
     def new(self, obj):
-        """
-        sets in __objects the obj with key <obj class name>.id
-        """
+        """sets in __objects the obj with key <obj class name>.id"""
         file_id = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[file_id] = obj
+        self.__objects[file_id] = obj
 
     def save(self):
-        """
-        serializes __objects to the JSON file (path: __file_path)
-        """
-        fileName = FileStorage.__file_path
-        fileObj = FileStorage.__objects
+        """serializes __objects to the JSON file (path: __file_path)"""
+        fileName = self.__file_path
+        fileObj = self.__objects
         storeD = {obj: fileObj[obj].to_dict() for obj in fileObj.keys()}
         with open(fileName, "w") as fN:
             json.dump(storeD, fN)
@@ -52,7 +43,7 @@ class FileStorage:
         deserializes the JSON file to __objects (only if the JSON file exists;
         otherwise, do nothing. If the file doesn’t exist, no exception  raised)
         """
-        fileName = FileStorage.__file_path
+        fileName = self.__file_path
         FileStorage.__objects = {}
         try:
             with open(fileName) as StrJ:
@@ -63,16 +54,3 @@ class FileStorage:
             clsName = value["__class__"]
             del value["__class__"]
             self.new(eval(clsName)(**value))
-
-    def delete(self, obj=None):
-        """Deletes an object if it exists."""
-        FileId = "{}.{}".format(type(obj).__name__, obj.id)
-        FileObj = FileStorge._objects
-        try:
-            del FileObj[FileId]
-        except (AttributeError, KeyError):
-            pass
-
-    def close(self):
-        """Call the reload function"""
-        FileStorage.reload()
