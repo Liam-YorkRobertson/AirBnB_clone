@@ -4,6 +4,7 @@ file storage for creating writing and reading json for storage
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
