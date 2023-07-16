@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
 		class_name = args[0]
 		objects = storage.all()
 
-		if class_name not in objects:
+		if class_name not in models.classes:
 			print("** class doesn't exist **")
 			return
 
