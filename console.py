@@ -159,7 +159,8 @@ class HBNBCommand(cmd.Cmd):
         attribute_name = args[2]
         attribute_value = args[3]
 
-        if attribute_name == "id" or attribute_name == "created_at" or attribute_name == "updated_at":
+        if attribute_name == "id" or attribute_name == "created_at" \
+                or attribute_name == "updated_at":
             return ()
 
         try:
