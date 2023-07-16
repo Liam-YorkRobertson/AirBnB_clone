@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""defines unittests amenity.py"""
+"""defines unittests amenity"""
 import os
 import models
 import unittest
@@ -9,10 +9,10 @@ from models.amenity import Amenity
 
 
 class TestAmenity_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of the Amenity class."""
+    """unittests testing Amenity class."""
 
     def test_no_args_instantiates(self):
-        self.assertEqual(Amenity, type(Amenity()))
+        self.assertEqual(Amenity, type(User()))
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Amenity(), models.storage.all().values())
@@ -26,54 +26,60 @@ class TestAmenity_instantiation(unittest.TestCase):
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Amenity().updated_at))
 
-    def testNameIsPublicClassAttribute(self):
-        self.assertEqual(str, type(Amenity.name))
-        self.assertIn("name", dir(Amenity()))
-        self.assertNotIn("name", am.__dict__)
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(Amenity.email))
 
-    def twoAmenitiesuniqueIds(self):
+    def test_password_is_public_str(self):
+        self.assertEqual(str, type(Amenity.password))
+
+    def test_first_name_is_public_str(self):
+        self.assertEqual(str, type(Amenity.first_name))
+
+    def test_last_name_is_public_str(self):
+        self.assertEqual(str, type(Amenity.last_name))
+
+    def twoAmenitysIdUnique(self):
         amenity1 = Amenity()
         amenity2 = Amenity()
-        self.assertNotEqual(amenity1.id, amenity2.id)
+        self.assertNotEqual(amenity1.id, user2.id)
 
-    def twoAmenitiesDifferentCreationTime(self):
+    def twoamenitysDifferentCreatTime(self):
         amenity1 = Amenity()
         sleep(0.1)
         amenity2 = Amenity()
-        self.assertLess(amenity1.created_at, amenity2.created_at)
+        self.assertLess(amenity1.created_at, user2.created_at)
 
-    def twoAmenitiesDifferentUpdateTime(self):
+    def twoAmenitysDifferentUpdateTime(self):
         amenity1 = Amenity()
         sleep(0.1)
         amenity2 = Amenity()
-        self.assertLess(amenity1.updated_at, amenity2.updated_at)
+        self.assertLess(amenity1.updated_at, user2.updated_at)
 
-    def stringRepresentationTest(self):
+    def stringRepTest(self):
         date = datetime.today()
-        date_repr = repr(dt)
-        am = Amenity()
-        am.id = "123456"
-        am.created_at = am.updated_at = dt
-        amstr = am.__str__()
-        self.assertIn("[Amenity] (123456)", amstr)
-        self.assertIn("'id': '123456'", amstr)
-        self.assertIn("'created_at': " + dt_repr, amstr)
-        self.assertIn("'updated_at': " + dt_repr, amstr)
+        dateRepr = repr(date)
+        amenity = Amenity()
+        amenity.id = "012345"
+        amenity.created_at = user.updated_at = date
+        amenityStr = user.__str__()
+        self.assertIn("[Amenity] (abcde)", amenitystr)
+        self.assertIn("'id': '012345'", amenitystr)
+        self.assertIn("'created_at': " + dateRepr, amenityStr)
+        self.assertIn("'updated_at': " + dateRepr, amenityStr)
 
-    def test_args_unused(self):
-        am = Amenity(None)
-        self.assertNotIn(None, am.__dict__.values())
+    def unusedArgsTest(self):
+        amenity = Amenity(None)
+        self.assertNotIn(None, amenity.__dict__.values())
 
-    def test_instantiation_with_kwargs(self):
-        """instantiation with kwargs test method"""
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        am = Amenity(id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(am.id, "345")
-        self.assertEqual(am.created_at, dt)
-        self.assertEqual(am.updated_at, dt)
+    def kwargsInstalTest(self):
+        date = datetime.today()
+        date_iso = date.isoformat()
+        amenity = Amenity(id="345", created_at=date_iso, updated_at=date_iso)
+        self.assertEqual(us.id, "000000")
+        self.assertEqual(us.created_at, date)
+        self.assertEqual(us.updated_at, date)
 
-    def test_instantiation_with_None_kwargs(self):
+    def noKwargsInstalTest(self):
         with self.assertRaises(TypeError):
             Amenity(id=None, created_at=None, updated_at=None)
 
