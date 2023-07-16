@@ -161,19 +161,15 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return ()
 
-        attribute_name = args[2]
-        attribute_value = args[3]
+        attr_name = args[2]
+        attr_value = args[3]
 
-        if attribute_name == "id" or attribute_name == "created_at" \
-                or attribute_name == "updated_at":
+        if attr_name == "id" or attr_name == "created_at" \
+                or attr_name == "updated_at":
             return ()
 
-        try:
-            attr_type = type(getattr(inst, attribute_name))
-            setattr(inst, attribute_name, attr_type(attribute_value))
-            inst.save()
-        except AttributeError:
-            print("** attribute doesn't exist **")
+        setattr(inst, attr_name, attr_value)
+        inst.save()
 
 
 if __name__ == '__main__':
