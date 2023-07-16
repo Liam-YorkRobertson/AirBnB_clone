@@ -5,14 +5,11 @@ import models
 import unittest
 from datetime import datetime
 from time import sleep
-from models.basemodel import BaseModel
+from models.base_model import BaseModel
 
 
 class TestBaseModel_instantiation(unittest.TestCase):
     """unittests testing BaseModel class."""
-
-    def test_no_args_instantiates(self):
-        self.assertEqual(BaseModel, type(User()))
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(BaseModel(), models.storage.all().values())
@@ -25,18 +22,6 @@ class TestBaseModel_instantiation(unittest.TestCase):
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(BaseModel().updated_at))
-
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(BaseModel.email))
-
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(BaseModel.password))
-
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(BaseModel.first_name))
-
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(BaseModel.last_name))
 
     def twoBaseModelsIdUnique(self):
         basemodel1 = BaseModel()

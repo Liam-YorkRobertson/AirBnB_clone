@@ -11,9 +11,6 @@ from models.state import State
 class TestState_instantiation(unittest.TestCase):
     """unittests testing State class."""
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(State, type(User()))
-
     def test_new_instance_stored_in_objects(self):
         self.assertIn(State(), models.storage.all().values())
 
@@ -25,18 +22,6 @@ class TestState_instantiation(unittest.TestCase):
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(State().updated_at))
-
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(State.email))
-
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(State.password))
-
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(State.first_name))
-
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(State.last_name))
 
     def twoStatesIdUnique(self):
         state1 = State()

@@ -11,9 +11,6 @@ from models.place import Place
 class TestPlace_instantiation(unittest.TestCase):
     """unittests testing Place class."""
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(Place, type(User()))
-
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Place(), models.storage.all().values())
 
@@ -25,18 +22,6 @@ class TestPlace_instantiation(unittest.TestCase):
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Place().updated_at))
-
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(Place.email))
-
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(Place.password))
-
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(Place.first_name))
-
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(Place.last_name))
 
     def twoPlacesIdUnique(self):
         place1 = Place()

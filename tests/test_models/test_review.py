@@ -11,9 +11,6 @@ from models.review import Review
 class TestReview_instantiation(unittest.TestCase):
     """unittests testing Review class."""
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(Review, type(User()))
-
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Review(), models.storage.all().values())
 
@@ -25,18 +22,6 @@ class TestReview_instantiation(unittest.TestCase):
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Review().updated_at))
-
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(Review.email))
-
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(Review.password))
-
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(Review.first_name))
-
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(Review.last_name))
 
     def twoReviewsIdUnique(self):
         review1 = Review()

@@ -11,9 +11,6 @@ from models.city import City
 class TestCity_instantiation(unittest.TestCase):
     """unittests testing City class."""
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(City, type(User()))
-
     def test_new_instance_stored_in_objects(self):
         self.assertIn(City(), models.storage.all().values())
 
@@ -25,18 +22,6 @@ class TestCity_instantiation(unittest.TestCase):
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(City().updated_at))
-
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(City.email))
-
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(City.password))
-
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(City.first_name))
-
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(City.last_name))
 
     def twoCitysIdUnique(self):
         city1 = City()
