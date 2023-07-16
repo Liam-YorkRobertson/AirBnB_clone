@@ -17,7 +17,10 @@ class FileStorage:
         _file_path (str):
         __objects (dict):
     """
-
+    classes = {
+    'BaseModel': BaseModel,
+    'User': User
+    }
     __file_path = 'file.json'
     __objects = {}
 
