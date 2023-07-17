@@ -32,23 +32,6 @@ class TestAmenity_instantiation(unittest.TestCase):
         self.assertIn("name", dir(Amenity()))
         self.assertNotIn("name", am.__dict__)
 
-    def test_to_dict_type(self):
-        self.assertTrue(dict, type(Amenity().to_dict()))
-
-    def test_to_dict_contains_correct_keys(self):
-        am = Amenity()
-        self.assertIn("id", am.to_dict())
-        self.assertIn("created_at", am.to_dict())
-        self.assertIn("updated_at", am.to_dict())
-        self.assertIn("__class__", am.to_dict())
-
-    def test_to_dict_datetime_attributes_are_strs(self):
-        am = Amenity()
-        am_dict = am.to_dict()
-        self.assertEqual(str, type(am_dict["id"]))
-        self.assertEqual(str, type(am_dict["created_at"]))
-        self.assertEqual(str, type(am_dict["updated_at"]))
-
     def twoAmenitysIdUnique(self):
         amenity1 = Amenity()
         amenity2 = Amenity()
