@@ -26,6 +26,9 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(BaseModel.email))
+
     def twoBaseModelsIdUnique(self):
         basemodel1 = BaseModel()
         basemodel2 = BaseModel()
