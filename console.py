@@ -24,15 +24,29 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    __classes = {
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Place",
-        "Amenity",
-        "Review"
-    }
+
+    def default(self, arg):
+        """
+        default behavior cmd module with valid input
+        """
+        argument = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+        }
+        srch = re.search(r"\.", arg)
+        if srch is not None:
+            argl = [arg[:srch.span()[0]], arg[srch.span()[1]:]]
+            srch = re.search(r"\((.*?)\)", argl[1])
+            if srch is not None:
+                command = [argl[1][:srch.span()[0]], srch.group()[1:-1]]
+                if command[0] in argument.keys():
+                    call = "{} {}".format(argl[0], command[1])
+                    return arguemnt[command[0]](call)
+        print("*** Unknown syntax: {}".format(arg))
+        return False
 
     def do_quit(self, arg):
         """
