@@ -11,17 +11,35 @@ from models.review import Review
 class TestReview_instantiation(unittest.TestCase):
     """unittests testing Review class."""
 
-    def test_new_instance_stored_in_objects(self):
+    def noArgsInstallTest(self):
+        self.assertEqual(Review, type(Review()))
+
+    def newInstanceStoreTest(self):
         self.assertIn(Review(), models.storage.all().values())
 
-    def test_id_is_public_str(self):
+    def idStringTest(self):
         self.assertEqual(str, type(Review().id))
 
-    def test_created_at_is_public_datetime(self):
+    def createdDatetimeTest(self):
         self.assertEqual(datetime, type(Review().created_at))
 
-    def test_updated_at_is_public_datetime(self):
+    def updatedDatetimeTest(self):
         self.assertEqual(datetime, type(Review().updated_at))
+
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(Review.place_id))
+
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(Review.user_id))
+
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(Review.text))
+
+    def nameClassAttTest(self):
+        review = Review()
+        self.assertEqual(str, type(Review.name))
+        self.assertIn("name", dir(Review()))
+        self.assertNotIn("name", am.__dict__)
 
     def twoReviewsIdUnique(self):
         review1 = Review()

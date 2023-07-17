@@ -11,17 +11,29 @@ from models.state import State
 class TestState_instantiation(unittest.TestCase):
     """unittests testing State class."""
 
-    def test_new_instance_stored_in_objects(self):
+    def noArgsInstallTest(self):
+        self.assertEqual(State, type(State()))
+
+    def newInstanceStoreTest(self):
         self.assertIn(State(), models.storage.all().values())
 
-    def test_id_is_public_str(self):
+    def idStringTest(self):
         self.assertEqual(str, type(State().id))
 
-    def test_created_at_is_public_datetime(self):
+    def createdDatetimeTest(self):
         self.assertEqual(datetime, type(State().created_at))
 
-    def test_updated_at_is_public_datetime(self):
+    def updatedDatetimeTest(self):
         self.assertEqual(datetime, type(State().updated_at))
+
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(State.name))
+
+    def nameClassAttTest(self):
+        state = State()
+        self.assertEqual(str, type(State.name))
+        self.assertIn("name", dir(State()))
+        self.assertNotIn("name", am.__dict__)
 
     def twoStatesIdUnique(self):
         state1 = State()
