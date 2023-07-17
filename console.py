@@ -171,6 +171,22 @@ class HBNBCommand(cmd.Cmd):
         setattr(inst, attr_name, attr_value)
         inst.save()
 
+    def default(self, line):
+        """
+        Allows use of <class name>.all().
+        """
+        match = re.match(r'^(\w+)\.all\(\)$', line)
+        if match:
+            class_name = match.group(1)
+            if class_name in models.classes:
+                objects = storage.all()
+                print([str(obj) for obj in objects.values()
+                       if type(obj).__name__ == class_name])
+            else:
+                print("** class doesn't exist **")
+        else:
+            super().default(line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
