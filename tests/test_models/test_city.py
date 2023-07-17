@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""defines unittests city"""
+"""define unittests city"""
 import os
 import models
 import unittest
