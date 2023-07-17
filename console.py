@@ -171,17 +171,44 @@ class HBNBCommand(cmd.Cmd):
         setattr(inst, attr_name, attr_value)
         inst.save()
 
+    def do_count(self, arg):
+        """
+        Retrieve the number of instances of a class.
+        """
+        if not arg:
+            print("** class name missing **")
+            return
+
+        if arg not in models.classes:
+            print("** class doesn't exist **")
+            return
+
+        class_inst = models.storage.all()
+        count = sum(1 for obj in class_inst.values()
+                    if obj.__class__.__name__ == arg)
+        print(count)
+
     def default(self, line):
         """
-        Allows use of <class name>.all().
+        Allows use of <class name>.all() and <class name>.count().
         """
-        match = re.match(r'^(\w+)\.all\(\)$', line)
-        if match:
-            class_name = match.group(1)
+        match_all = re.match(r'^(\w+)\.all\(\)$', line)
+        match_count = re.match(r'^(\w+)\.count\(\)$', line)
+        if match_all:
+            class_name = match_all.group(1)
             if class_name in models.classes:
                 objects = storage.all()
                 print([str(obj) for obj in objects.values()
                        if type(obj).__name__ == class_name])
+            else:
+                print("** class doesn't exist **")
+        elif match_count:
+            class_name = match_count.group(1)
+            if class_name in models.classes:
+                class_inst = models.storage.all()
+                count = sum(1 for obj in class_inst.values()
+                            if obj.__class__.__name__ == class_name)
+                print(count)
             else:
                 print("** class doesn't exist **")
         else:
