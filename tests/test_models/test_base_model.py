@@ -65,7 +65,8 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def kwargsInstalTest(self):
         date = datetime.today()
         date_iso = date.isoformat()
-        basemodel = BaseModel(id="345", created_at=date_iso, updated_at=date_iso)
+        basemodel = BaseModel(id="345", created_at=date_iso,
+                              updated_at=date_iso)
         self.assertEqual(us.id, "000000")
         self.assertEqual(us.created_at, date)
         self.assertEqual(us.updated_at, date)
